@@ -2,7 +2,11 @@ package app;
 
 import java.util.Objects;
 
+import javax.persistence.Id;
+
 public class User {
+    @Id
+    Integer id;
     String name;
     String password;
     String email;
