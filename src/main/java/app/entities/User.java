@@ -8,34 +8,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Integer id;
     String name;
-    String email;
     String password;
-    String address;
+    String email;
 
     public User() {
     }
 
-    public User(int id, String name, String email, String password, String address) {
+    public User(Integer id, String name, String password, String email) {
         this.id = id;
         this.name = name;
-        this.email = email;
         this.password = password;
-        this.address = address;
+        this.email = email;
     }
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,14 +44,6 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return this.password;
     }
@@ -63,15 +52,15 @@ public class User {
         this.password = password;
     }
 
-    public String getAddress() {
-        return this.address;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public User id(int id) {
+    public User id(Integer id) {
         setId(id);
         return this;
     }
@@ -81,18 +70,13 @@ public class User {
         return this;
     }
 
-    public User email(String email) {
-        setEmail(email);
-        return this;
-    }
-
     public User password(String password) {
         setPassword(password);
         return this;
     }
 
-    public User address(String address) {
-        setAddress(address);
+    public User email(String email) {
+        setEmail(email);
         return this;
     }
 
@@ -104,12 +88,12 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(address, user.address);
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, password, address);
+        return Objects.hash(id, name, password, email);
     }
 
     @Override
@@ -117,9 +101,8 @@ public class User {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
-            ", address='" + getAddress() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 
